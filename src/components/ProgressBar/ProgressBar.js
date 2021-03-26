@@ -6,7 +6,16 @@ import { COLORS } from '../../constants';
 import VisuallyHidden from '../VisuallyHidden';
 
 const ProgressBar = ({ value, size }) => {
-  return <Progress max="100" size={size} value={value} role="progressbar" aria-valuenow={value} aria-valuemin="0" aria-valuemax="100">{value}</Progress>;
+  return <Progress
+    max="100"
+    size={size}
+    value={value}
+    aria-valuenow={value}
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    {value}
+  </Progress>;
 };
 
 const ProgressValueMixin = css`
