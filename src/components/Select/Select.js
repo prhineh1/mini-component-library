@@ -9,10 +9,52 @@ const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
   return (
-    <select value={value} onChange={onChange}>
-      {children}
-    </select>
+    <Wrapper>
+      <Dropdown>
+        {displayedValue}
+      </Dropdown>
+      <DropdownIcon id="chevron-down" />
+      <HiddenSelect value={value} onChange={onChange}>{children}</HiddenSelect>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  position: relative;
+  width: fit-content;
+  display: block;
+  padding: 12px 16px;
+  padding-top: 3px;
+  border-radius: 8px;
+  background-color: ${COLORS.transparentGray15};
+`;
+
+const DropdownIcon = styled(Icon)`
+  display: inline-block;
+  position: relative;
+  top: 7px;
+`;
+
+const Dropdown = styled.div`
+  margin-right: 24px;
+  font-size: 16px;
+  line-height: 19px;
+  width: fit-content;
+  border: 0;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+`;
+
+const HiddenSelect = styled.select`
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+`;
 
 export default Select;
