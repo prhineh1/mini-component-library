@@ -10,7 +10,7 @@ const Select = ({ label, value, onChange, children }) => {
 
   return (
     <Wrapper>
-      <Dropdown>
+      <Dropdown aria-hidden="true">
         {displayedValue}
       </Dropdown>
       <DropdownIcon id="chevron-down" />
@@ -27,6 +27,15 @@ const Wrapper = styled.div`
   padding-top: 3px;
   border-radius: 8px;
   background-color: ${COLORS.transparentGray15};
+  color: ${COLORS.gray700};
+
+  &:hover {
+    color: ${COLORS.black};
+  }
+
+  &:focus-within {
+    outline: 2px solid #4374CB;
+  }
 `;
 
 const DropdownIcon = styled(Icon)`
@@ -42,10 +51,6 @@ const Dropdown = styled.div`
   width: fit-content;
   border: 0;
   display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
 `;
 
 const HiddenSelect = styled.select`
