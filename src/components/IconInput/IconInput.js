@@ -14,8 +14,7 @@ const IconInput = ({
   placeholder,
 }) => {
 
-  const styles = {
-    '--width': width + 'px',
+  const sizes = {
     large: {
       '--border-width': 2 + 'px',
       '--padding-bottom': 5 + 'px',
@@ -32,9 +31,9 @@ const IconInput = ({
     }
   };
 
-  const withWidth = {...styles[size], '--width': width + 'px'};
+  const styles = {...sizes[size], '--width': width + 'px'};
   return (
-  <Wrapper style={withWidth}>
+  <Wrapper style={styles}>
     <ExtendedIcon size={size === 'small' ? 10.67 : 16} id={icon}></ExtendedIcon>
     <VisuallyHidden>
       <label for="iconInput">{label}</label>
@@ -47,6 +46,11 @@ const IconInput = ({
 const Wrapper = styled.div`
   width: fit-content;
   position: relative;
+  color: ${COLORS.gray700};
+
+  &:hover {
+    color: ${COLORS.black};
+  }
 `;
 
 const ExtendedIcon = styled(Icon)`
@@ -55,6 +59,7 @@ const ExtendedIcon = styled(Icon)`
   top: 0;
   bottom: var(--padding-bottom);
   margin: auto;
+  color: currentColor;
 `;
 
 const TextInput = styled.input`
@@ -63,14 +68,22 @@ const TextInput = styled.input`
   border: 0;
   width: var(--width);
   font-size: var(--font-size);
+  padding: 0;
   padding-left: calc(var(--left-padding) + var(--icon-width));
   padding-bottom: var(--padding-bottom);
   border-style: solid;
   border-color: ${COLORS.black};
   border-bottom-width: var(--border-width);
+  font-weight: bold;
+  color: currentColor;
 
   &:focus {
     outline-offset: 2px;
+  }
+
+  &::placeholder {
+    font-weight: normal;
+    color: ${COLORS.gray500};
   }
 `;
 
